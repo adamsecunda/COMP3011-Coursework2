@@ -35,3 +35,18 @@ The tool features a command-line interface (shell). Launch it by running: `pytho
 This project includes a test suite to ensure the reliability of the crawling, indexing, and search components.
 
 To run the tests: `python3 -m unittest discover tests`
+
+The testing strategy followed a bottom-up approach, moving from isolated units to full pipeline integration.
+### 1. Unit Testing
+
+**Crawler Tests**: These use mocking to simulate HTML responses from "Quotes to Scrape." This allows us to verify the link following logic and domain locking without actually hitting the network or waiting for the 6-second politeness delay.
+
+**Indexer Tests**: These focus on data integrity. They are written to ensure that the inverted index correctly maps words to their exact numerical positions and handles case-insensitivity as required.
+
+**Persistence Tests**: These verify the save and load functionality, ensuring the JSON index can be serialised and recovered without data loss.
+
+### 2. Integration & Edge Case Testing
+
+**Search Logic**: Test the set intersection for multi-word queries.
+
+**Edge Cases**: The suite explicitly covers empty queries, non-existent words, and special characters (like punctuation in the quotes) to ensure the tool is robust and doesn't crash on unexpected inpu
