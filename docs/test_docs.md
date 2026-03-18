@@ -1,3 +1,17 @@
+# Test Suite Documentation
+
+## File: test_search.py
+### Class: TestSearch
+> Tests for the search logic using dummy data.
+
+* **test_single_term**: Verify a single term pulls all documents containing it.
+* **test_subset_intersection**: Ensure searching for two terms returns only the document where they overlap.
+* **test_empty_intersection**: Verify that a search for terms that never co-occur returns nothing.
+* **test_missing_term**: Confirm that a term not present in the index kills the entire search.
+* **test_normalization**: Check that the search still works if the query is capitalized.
+
+---
+
 ## File: test_indexer.py
 ### Class: TestIndexer
 > Tests for the inverted index logic and serialisation.
