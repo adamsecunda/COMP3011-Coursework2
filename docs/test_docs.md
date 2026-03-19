@@ -23,6 +23,16 @@
 
 ---
 
+## File: test_performance.py
+### Class: TestPerformance
+> Benchmarks for indexing and search retrieval speeds.
+
+* **test_batch_crawl_efficiency**: Measure the overhead of processing 100 internal links (mocked).
+* **test_indexing_speed**: Measure time taken to index 100 documents.
+* **test_search_latency**: Measure the latency of a TF-IDF search on a populated index.
+
+---
+
 ## File: test_integration.py
 ### Class: TestSearchIntegration
 > Integration tests for the crawl-to-search pipeline.
@@ -48,5 +58,3 @@ Args:
 Args:
     mock_get: Mocked requests.get method.
 * **test_respectful_request_delay**: Test that the politeness delay logic correctly identifies wait time.
-
----

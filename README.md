@@ -32,14 +32,13 @@ The tool features a command-line interface (shell). Launch it by running: `pytho
 | **find** | `> find <query>` | Returns a list of all pages containing the given query term or phrase. |
 
 ## Testing
-This project includes a test suite to ensure the reliability of the crawling, indexing, and search components.
+This project includes a comprehensive test suite to ensure the reliability of the crawling, indexing, and search components.
 
-To run the tests: `python3 -m unittest discover tests`
+**To run the full suite:** `python3 -m unittest discover tests`  
 
-The testing strategy followed a bottom-up approach, moving from isolated units to full pipeline integration.
-### 1. Unit Testing
+The testing strategy followed a bottom-up approach, moving from isolated units to performance benchmarking and full pipeline integration.
 
-**Crawler Tests**: These use mocking to simulate HTML responses from "Quotes to Scrape." This allows us to verify the link following logic and domain locking without actually hitting the network or waiting for the 6-second politeness delay.
+**Crawler Tests**: These use mocking to simulate HTML responses from Quotes to Scrape. This allows us to verify the link following logic and domain locking without actually hitting the network or waiting for the 6-second politeness delay.
 
 **Indexer Tests**: These focus on data integrity. They are written to ensure that the inverted index correctly maps words to their exact numerical positions and handles case-insensitivity as required.
 
@@ -47,6 +46,16 @@ The testing strategy followed a bottom-up approach, moving from isolated units t
 
 ### 2. Integration & Edge Case Testing
 
-**Search Logic**: Test the set intersection for multi-word queries.
+**Search Logic**: Test the set intersection for multi-word queries to ensure that only documents containing all terms are returned.
 
-**Edge Cases**: The suite explicitly covers empty queries, non-existent words, and special characters (like punctuation in the quotes) to ensure the tool is robust and doesn't crash on unexpected inpu
+**Edge Cases**: The suite explicitly covers empty queries, non-existent words, and special characters (like punctuation in the quotes) to ensure the tool is robust and doesn't crash on unexpected input.
+
+### 3. Performance & Scalability Benchmarking
+
+**Indexing Speed**: Measure speed of indexing 100 documents.
+
+**Search Latency**: Measures the time taken to rank results using TF-IDF. Tests confirm that even with hundreds of documents, search remains sub-millisecond.
+
+**Crawler Politeness**: Uses mocked system clocks to verify that the 6-second delay logic is calculated with millisecond precision without slowing down the test execution.
+
+---
